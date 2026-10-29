@@ -3,6 +3,19 @@
 	"name": "Cuportal Revanced",
 	"version": "0.0.1",
 	"description": "Possibility mentality",
+	"permissions": [
+		"declarativeNetRequest",
+		"declarativeNetRequestFeedback"
+	],
+	"declarative_net_request": {
+		"rule_resources": [
+			{
+				"id": "portal_rules",
+				"enabled": true,
+				"path": "rules.json"
+			}
+		]
+	},
 	"content_scripts": [
 		{
 			"matches": [
