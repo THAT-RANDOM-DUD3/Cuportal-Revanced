@@ -1,0 +1,17 @@
+{
+	"manifest_version": 3,
+	"name": "Cuportal Revanced",
+	"version": "0.0.1",
+	"description": "Possibility mentality",
+	"content_scripts": [
+		{
+			"matches": [
+				"https://cuportal.covenantuniversity.edu.ng/*"
+			],
+			"js": [
+				"content.js"
+			],
+			"run_at": "document_idle"
+		}
+	]
+}
