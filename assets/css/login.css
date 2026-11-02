@@ -1,0 +1,528 @@
+/* ==========================================================================
+   CUPORTAL REVANCED DESIGN SYSTEM
+   Inspired by Meta Design System (DESIGN.md) & Covenant University Visual Identity
+   Clean, Fast, Authentic, Accessible, Dark Mode Ready & Responsive
+   ========================================================================== */
+
+:root {
+  /* Meta / Core Brand Colors (from DESIGN.md) */
+  --color-primary: #7331a6;
+  --color-primary-deep: #5b2d82;
+  --color-primary-soft: #5b2d82;
+  --color-on-primary: #ffffff;
+  
+  --color-ink-button: #1c1e21;
+  --color-ink-button-hover: #33383f;
+  --color-on-ink-button: #ffffff;
+  
+  --color-meta-link: #5b2d82;
+  --color-meta-link-hover: #5b2d82;
+  
+  /* Covenant Brand Accents */
+  --cu-purple: #4a0e4e;
+  --cu-purple-deep: #320535;
+  --cu-purple-soft: #5b2d82;
+  --cu-gold: #d9951a;
+
+  /* Surfaces & Canvas (Light Mode Defaults) */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f1f4f7;
+  --color-surface-card: rgba(255, 255, 255, 0.88);
+  --color-card-border: rgba(255, 255, 255, 0.75);
+  --color-scrim: rgba(15, 23, 42, 0.28);
+
+  /* Form & Inputs */
+  --color-input-bg: #ffffff;
+  --color-input-border: #ced0d4;
+  --color-input-text: #1c1e21;
+  --color-input-placeholder: #8595a4;
+  
+  /* Text & Inks */
+  --color-ink-deep: #0a1317;
+  --color-ink: #1c1e21;
+  --color-charcoal: #444950;
+  --color-slate: #4b4c4f;
+  --color-steel: #5d6c7b;
+  --color-stone: #8595a4;
+  --color-disabled-text: #bcc0c4;
+  --color-help-text: #5d6c7b;
+
+  /* Buttons */
+  --color-btn-inactive-bg: #d1d5db;
+  --color-btn-inactive-text: #6b7280;
+  --color-btn-active-bg: #5b2d82;
+  --color-btn-active-hover: #4a0e4e;
+  --color-btn-active-text: #ffffff;
+  --color-btn-active-shadow: rgba(91, 45, 130, 0.35);
+
+  /* Links & Accents */
+  --color-link: #5b2d82;
+  --color-link-hover: #4a0e4e;
+
+  /* Floating Theme Toggle */
+  --color-toggle-bg: rgba(255, 255, 255, 0.85);
+  --color-toggle-border: rgba(255, 255, 255, 0.75);
+  --color-toggle-color: #4a0e4e;
+  --color-toggle-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* Borders & Dividers */
+  --color-hairline: #ced0d4;
+  --color-hairline-soft: #dee3e9;
+  --color-fb-blue: #5b2d82;
+
+  /* Semantics */
+  --color-critical: #e41e3f;
+  --color-critical-strong: #f0284a;
+  --color-critical-bg: #fef2f2;
+  --color-critical-border: #fee2e2;
+  --color-success: #31a24c;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --letter-spacing-body: -0.14px;
+  --letter-spacing-heading: -0.16px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+  --radius-full: 100px;
+
+  /* Elevation */
+  --shadow-card: 0 16px 36px -4px rgba(10, 19, 23, 0.16), 0 4px 12px -2px rgba(10, 19, 23, 0.08);
+  --shadow-card-subtle: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-input-focus: 0 0 0 3px rgba(91, 45, 130, 0.16);
+}
+
+/* ==========================================================================
+   DARK MODE TOKEN OVERRIDES (Explicit [data-theme="dark"] & System Fallback)
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --color-canvas: #100b17;
+  --color-surface-soft: #1a1424;
+  --color-surface-card: rgba(22, 16, 32, 0.82);
+  --color-card-border: rgba(255, 255, 255, 0.12);
+  --color-scrim: rgba(8, 6, 14, 0.65);
+
+  --color-input-bg: rgba(33, 25, 47, 0.75);
+  --color-input-border: rgba(255, 255, 255, 0.14);
+  --color-input-text: #f9fafb;
+  --color-input-placeholder: #9ca3af;
+
+  --color-ink-deep: #ffffff;
+  --color-ink: #f3f4f6;
+  --color-charcoal: #d1d5db;
+  --color-slate: #9ca3af;
+  --color-steel: #9ca3af;
+  --color-stone: #6b7280;
+  --color-disabled-text: #4b5563;
+  --color-help-text: #9ca3af;
+
+  --color-btn-inactive-bg: #374151;
+  --color-btn-inactive-text: #9ca3af;
+  --color-btn-active-bg: #7935b0;
+  --color-btn-active-hover: #8c42cb;
+  --color-btn-active-text: #ffffff;
+  --color-btn-active-shadow: rgba(121, 53, 176, 0.45);
+
+  --color-link: #c084fc;
+  --color-link-hover: #d8b4fe;
+
+  --color-toggle-bg: rgba(26, 20, 38, 0.85);
+  --color-toggle-border: rgba(255, 255, 255, 0.15);
+  --color-toggle-color: #ffffff;
+  --color-toggle-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+  --color-hairline: rgba(255, 255, 255, 0.12);
+  --color-hairline-soft: rgba(255, 255, 255, 0.08);
+
+  --color-critical-bg: rgba(239, 68, 68, 0.15);
+  --color-critical-border: rgba(239, 68, 68, 0.3);
+  --color-critical-strong: #f87171;
+
+  --shadow-card: 0 20px 45px -8px rgba(0, 0, 0, 0.65), 0 0 30px rgba(121, 53, 176, 0.18);
+  --shadow-input-focus: 0 0 0 3px rgba(168, 85, 247, 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: #100b17;
+    --color-surface-soft: #1a1424;
+    --color-surface-card: rgba(22, 16, 32, 0.82);
+    --color-card-border: rgba(255, 255, 255, 0.12);
+    --color-scrim: rgba(8, 6, 14, 0.65);
+
+    --color-input-bg: rgba(33, 25, 47, 0.75);
+    --color-input-border: rgba(255, 255, 255, 0.14);
+    --color-input-text: #f9fafb;
+    --color-input-placeholder: #9ca3af;
+
+    --color-ink-deep: #ffffff;
+    --color-ink: #f3f4f6;
+    --color-charcoal: #d1d5db;
+    --color-slate: #9ca3af;
+    --color-steel: #9ca3af;
+    --color-stone: #6b7280;
+    --color-disabled-text: #4b5563;
+    --color-help-text: #9ca3af;
+
+    --color-btn-inactive-bg: #374151;
+    --color-btn-inactive-text: #9ca3af;
+    --color-btn-active-bg: #7935b0;
+    --color-btn-active-hover: #8c42cb;
+    --color-btn-active-text: #ffffff;
+    --color-btn-active-shadow: rgba(121, 53, 176, 0.45);
+
+    --color-link: #c084fc;
+    --color-link-hover: #d8b4fe;
+
+    --color-toggle-bg: rgba(26, 20, 38, 0.85);
+    --color-toggle-border: rgba(255, 255, 255, 0.15);
+    --color-toggle-color: #ffffff;
+    --color-toggle-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    --color-hairline: rgba(255, 255, 255, 0.12);
+    --color-hairline-soft: rgba(255, 255, 255, 0.08);
+
+    --color-critical-bg: rgba(239, 68, 68, 0.15);
+    --color-critical-border: rgba(239, 68, 68, 0.3);
+    --color-critical-strong: #f87171;
+
+    --shadow-card: 0 20px 45px -8px rgba(0, 0, 0, 0.65), 0 0 30px rgba(121, 53, 176, 0.18);
+    --shadow-input-focus: 0 0 0 3px rgba(168, 85, 247, 0.28);
+  }
+}
+
+/* ==========================================================================
+   RESET & FOUNDATIONS
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: color 0.3s ease;
+}
+
+/* Background Viewport: Authentic Campus Photography */
+body {
+  background-image: url("../img/CU6.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #1e2430;
+  position: relative;
+}
+
+/* Subtle Photo Scrim (Clear & crisp, lets campus photo shine through) */
+.portal-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--color-scrim);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* Main Centered Container */
+.portal-container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON: Floating Glassmorphism Pill
+   ========================================================================== */
+.theme-toggle-wrap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.theme-toggle-btn {
+  background: var(--color-toggle-bg);
+  border: 1px solid var(--color-toggle-border);
+  color: var(--color-toggle-color);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--color-toggle-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* ==========================================================================
+   CARD COMPONENT: Refined Subtle Glassmorphism
+   ========================================================================== */
+.portal-login-card {
+  width: 100%;
+  max-width: 410px;
+  background: var(--color-surface-card);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px 30px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Brand Logo Header */
+.card-logo-wrap {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.portal-cu-logo {
+  display: inline-block;
+  width: 110px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================================================
+   FORM CONTROLS (from DESIGN.md text-input & text-input-focused)
+   ========================================================================== */
+.form-horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Clean Input Style */
+.form-control,
+input[type="text"].form-control,
+input[type="password"].form-control {
+  width: 100%;
+  height: 46px;
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 14px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--color-input-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: var(--color-input-placeholder);
+  font-weight: 400;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-input-focus);
+}
+
+/* Password Toggle Icon */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-steel);
+  cursor: pointer;
+  padding: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.password-toggle:hover {
+  color: var(--color-ink-deep);
+}
+
+/* Helper Caption Text Below Inputs (from original portal, refined) */
+.help-block {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-help-text);
+  letter-spacing: var(--letter-spacing-body);
+  text-align: center;
+  margin-top: 6px;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   PRIMARY BUTTON: Grey by default -> Purple & Clickable when active
+   ========================================================================== */
+.btn-signin,
+.btn.btn-danger,
+input[type="submit"]#signin {
+  width: 100% !important;
+  height: 46px !important;
+  background-color: var(--color-btn-inactive-bg) !important; /* Inactive State */
+  color: var(--color-btn-inactive-text) !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: var(--letter-spacing-body) !important;
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  cursor: not-allowed !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  margin-top: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease !important;
+}
+
+/* Active State: Triggered when user enters credentials */
+.btn-signin.btn-active,
+.btn-signin:not(:disabled),
+input[type="submit"]#signin.btn-active {
+  background-color: var(--color-btn-active-bg) !important;
+  color: var(--color-btn-active-text) !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px var(--color-btn-active-shadow) !important;
+}
+
+.btn-signin.btn-active:hover,
+.btn-signin:not(:disabled):hover,
+input[type="submit"]#signin.btn-active:hover {
+  background-color: var(--color-btn-active-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--color-btn-active-shadow) !important;
+}
+
+.btn-signin.btn-active:active,
+.btn-signin:not(:disabled):active,
+input[type="submit"]#signin.btn-active:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   FORGOT PASSWORD & FOOTER LINK
+   ========================================================================== */
+.forgot-password-wrap,
+.error {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.forgot-password-link,
+.error a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.forgot-password-link:hover,
+.error a:hover {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+/* Alert Notification (Backend Compatibility) */
+.portal-alert {
+  display: none;
+  background-color: var(--color-critical-bg);
+  border: 1px solid var(--color-critical-border);
+  color: var(--color-critical-strong);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.portal-alert.visible {
+  display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT (from DESIGN.md Responsive Behavior)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .portal-container {
+    padding: 16px 12px;
+  }
+
+  .theme-toggle-wrap {
+    top: 14px;
+    right: 14px;
+  }
+
+  .theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .portal-login-card {
+    padding: 28px 20px 22px;
+    border-radius: var(--radius-lg);
+  }
+
+  .portal-cu-logo {
+    width: 95px;
+  }
+
+  .form-control {
+    height: 48px; /* Touch target minimum 44-48px per WCAG AAA */
+    font-size: 15px; /* Prevent iOS zoom */
+  }
+
+  .btn-signin {
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+}

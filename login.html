@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+	<title>Covenant Portal || Login</title>
+	<meta name="description" content="Covenant University Portal - Login">
+	<link rel="icon" type="image/svg+xml" href="assets/img/CULOGO.png">
+	<link rel="alternate icon" type="image/png" href="assets/img/CULOGO.png">
+
+	<!-- Modern FontAwesome Icons (for discreet password toggle eye) -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Cuportal Revanced Design System Stylesheet (ref: DESIGN.md) -->
+	<link href="assets/css/login.css" rel="stylesheet" type="text/css">
+
+	<!-- Theme Init Script: Instant Theme Execution to Prevent Flash -->
+	<script>
+		(function () {
+			const saved = localStorage.getItem('cuportal_theme');
+			const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+			document.documentElement.setAttribute('data-theme', theme);
+		})();
+	</script>
+</head>
+
+<body>
+	<!-- Theme Toggle: Quick Dark/Light Mode Switcher -->
+	<aside class="theme-toggle-wrap">
+		<button 
+			type="button" 
+			class="theme-toggle-btn" 
+			id="themeToggle" 
+			aria-label="Toggle dark mode" 
+			title="Toggle Dark / Light Mode"
+		>
+			<i class="fa-solid fa-moon" id="themeToggleIcon"></i>
+		</button>
+	</aside>
+
+	<!-- Subtle Photo Scrim (Enhances contrast and text readability) -->
+	<div class="portal-scrim" aria-hidden="true"></div>
+
+	<!-- Main Viewport Container: Centered Alignment -->
+	<div class="portal-container">
+		<main class="portal-login-card">
+			
+			<!-- Authentic Covenant University Logo -->
+			<header class="card-logo-wrap">
+				<img src="assets/img/CULOGO.png" alt="Covenant University" class="portal-cu-logo" onerror="this.onerror=null; this.src='assets/img/CULOGO.png';">
+			</header>
+
+			<!-- Authentication Form (Preserves 100% backend contract) -->
+			<form class="form-horizontal" role="form" method="post" id="login" action="">
+				
+				<!-- Username / Matric No. -->
+				<div class="form-group">
+					<div class="input-container">
+						<input 
+							type="text" 
+							class="form-control" 
+							id="userid" 
+							name="userid" 
+							placeholder="User Name" 
+							autocomplete="username" 
+							required 
+						/>
+					</div>
+					<p class="help-block">USER : Input Username</p>
+				</div>
+
+				<!-- Password with discreet visibility toggle -->
+				<div class="form-group">
+					<div class="input-container">
+						<input 
+							type="password" 
+							class="form-control" 
+							id="inputpassword1" 
+							name="inputpassword1" 
+							placeholder="Password" 
+							autocomplete="current-password" 
+							required 
+						/>
+						<button 
+							type="button" 
+							class="password-toggle" 
+							id="togglePassword" 
+							aria-label="Toggle password visibility" 
+							title="Show / Hide Password"
+						>
+							<i class="fa-regular fa-eye" id="togglePasswordIcon"></i>
+						</button>
+					</div>
+					<p class="help-block">Remember : Passwords are CASE SENSITIVE</p>
+				</div>
+
+				<!-- Primary Action: Sign In Button (Grey initially -> Purple & Clickable on input) -->
+				<div class="form-group" style="margin-bottom: 12px;">
+					<button type="submit" class="btn-signin" name="signin" id="signin" disabled>
+						Sign In
+					</button>
+				</div>
+			</form>
+
+			<!-- Error Alert Container (Backend Contract Compatibility) -->
+			<div class="portal-alert" id="errorAlert" role="alert"></div>
+
+			<!-- Forgot Password Link -->
+			<div class="forgot-password-wrap error">
+				<a href="pwordreset.php" class="forgot-password-link" id="forgotPasswordLink">
+					Forgot Password?
+				</a>
+			</div>
+		</main>
+	</div>
+
+	<!-- Interactive Logic: Theme Toggle, Password Toggle & Dynamic Button State -->
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// 0. Dark / Light Mode Switcher
+			const themeToggleBtn = document.getElementById('themeToggle');
+			const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+			function updateThemeIcon(theme) {
+				if (!themeToggleIcon) return;
+				if (theme === 'dark') {
+					themeToggleIcon.className = 'fa-solid fa-sun';
+				} else {
+					themeToggleIcon.className = 'fa-solid fa-moon';
+				}
+			}
+
+			const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+			updateThemeIcon(currentTheme);
+
+			if (themeToggleBtn) {
+				themeToggleBtn.addEventListener('click', () => {
+					const activeTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', activeTheme);
+					localStorage.setItem('cuportal_theme', activeTheme);
+					updateThemeIcon(activeTheme);
+				});
+			}
+
+			// 1. Password Visibility Toggle
+			const toggleBtn = document.getElementById('togglePassword');
+			const passwordInput = document.getElementById('inputpassword1');
+			const toggleIcon = document.getElementById('togglePasswordIcon');
+
+			if (toggleBtn && passwordInput && toggleIcon) {
+				toggleBtn.addEventListener('click', () => {
+					const isPassword = passwordInput.getAttribute('type') === 'password';
+					passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+					toggleIcon.className = isPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+				});
+			}
+
+			// 2. Sign In Button: Grey by default -> Purple & Clickable when typing
+			const useridInput = document.getElementById('userid');
+			const signinBtn = document.getElementById('signin');
+
+			function updateButtonState() {
+				if (!useridInput || !passwordInput || !signinBtn) return;
+				const hasUser = useridInput.value.trim().length > 0;
+				const hasPass = passwordInput.value.length > 0;
+				const isReady = hasUser || hasPass;
+
+				if (isReady) {
+					signinBtn.disabled = false;
+					signinBtn.classList.add('btn-active');
+				} else {
+					signinBtn.disabled = true;
+					signinBtn.classList.remove('btn-active');
+				}
+			}
+
+			if (useridInput && passwordInput) {
+				useridInput.addEventListener('input', updateButtonState);
+				passwordInput.addEventListener('input', updateButtonState);
+				// Check initially (e.g. if browser autofills credentials)
+				updateButtonState();
+			}
+		});
+	</script>
+</body>
+</html>
