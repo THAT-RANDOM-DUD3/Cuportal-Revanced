@@ -21,10 +21,53 @@
 			"matches": [
 				"https://cuportal.covenantuniversity.edu.ng/*"
 			],
+			"css": [
+				"assets/css/global.css"
+			],
 			"js": [
 				"content.js"
 			],
 			"run_at": "document_idle"
+		},
+		{
+			"matches": [
+				"https://cuportal.covenantuniversity.edu.ng/",
+				"https://cuportal.covenantuniversity.edu.ng/index.php*",
+				"https://cuportal.covenantuniversity.edu.ng/login.php*"
+			],
+			"css": [
+				"assets/css/login.css"
+			],
+			"run_at": "document_idle"
+		},
+		{
+			"matches": [
+				"https://cuportal.covenantuniversity.edu.ng/*"
+			],
+			"exclude_matches": [
+				"https://cuportal.covenantuniversity.edu.ng/",
+				"https://cuportal.covenantuniversity.edu.ng/index.php*",
+				"https://cuportal.covenantuniversity.edu.ng/login.php*"
+			],
+			"css": [
+				"assets/css/dashboard.css"
+			],
+			"js": [
+				"assets/js/dashboard.js"
+			],
+			"run_at": "document_idle"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"assets/img/*",
+				"assets/css/*",
+				"assets/js/*"
+			],
+			"matches": [
+				"https://cuportal.covenantuniversity.edu.ng/*"
+			]
 		}
 	]
 }

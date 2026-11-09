@@ -1,0 +1,17 @@
+# Local development reference files (served dynamically from portal server)
+login.html
+dashboard.html
+studentaccount.html
+maincontent.html
+original_app.js
+
+# Local design scratchpad (superseded by assets/css/global.css tokens)
+DESIGN.md
+
+# Extension & Browser Generated
+_metadata/
+
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
