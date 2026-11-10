@@ -7,6 +7,7 @@
 /* --------------------------------------------------------------------------
    1. Base & Layout Shell
    -------------------------------------------------------------------------- */
+html,
 body.skin-black {
   background-color: var(--color-surface-soft) !important;
   color: var(--color-ink) !important;
@@ -17,6 +18,9 @@ body.skin-black {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
 }
 
 /* Deep Obsidian-Purple Atmosphere for Dark Mode */
@@ -33,14 +37,18 @@ body.skin-black {
   flex: 1;
   position: relative;
   min-height: calc(100vh - 70px);
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   background-color: transparent !important;
   transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box !important;
 }
 
 /* --------------------------------------------------------------------------
    2. Sticky Modern Top Navigation
    -------------------------------------------------------------------------- */
-header.header.headerstaff {
+header.header,
+header.headerstaff {
   position: sticky !important;
   top: 0 !important;
   z-index: 1000 !important;
@@ -58,14 +66,16 @@ header.header.headerstaff {
   box-sizing: border-box !important;
 }
 
-:root[data-theme="dark"] header.header.headerstaff {
+:root[data-theme="dark"] header.header,
+:root[data-theme="dark"] header.headerstaff {
   background: rgba(14, 4, 26, 0.92) !important;
   border-bottom-color: rgba(168, 85, 247, 0.22) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* Brand Logo */
-header.header .logo {
+header.header .logo,
+header.headerstaff .logo {
   display: flex !important;
   align-items: center !important;
   gap: 0.75rem !important;
@@ -74,80 +84,100 @@ header.header .logo {
   padding: 0 !important;
   background: transparent !important;
   float: none !important;
+  flex-shrink: 0 !important;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-header.header .logo:hover {
+header.header .logo:hover,
+header.headerstaff .logo:hover {
   opacity: 0.92;
   transform: scale(1.02);
 }
 
-header.header .logo img {
+header.header .logo img,
+header.headerstaff .logo img {
   object-fit: contain;
   vertical-align: middle;
 }
 
-header.header .logo img:first-child {
+header.header .logo img:first-child,
+header.headerstaff .logo img:first-child {
   width: 44px !important;
   height: 44px !important;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-header.header .logo img:last-child {
+header.header .logo img:last-child,
+header.headerstaff .logo img:last-child {
   height: 28px !important;
   width: auto !important;
   max-width: 130px !important;
 }
 
-:root[data-theme="dark"] header.header .logo img:last-child {
+:root[data-theme="dark"] header.header .logo img:last-child,
+:root[data-theme="dark"] header.headerstaff .logo img:last-child {
   filter: brightness(0) invert(1) opacity(0.85);
 }
 
 /* Top Navbar Container */
-.navbar.navbarstaff {
+.navbar.navbarstaff,
+header .navbar {
   display: flex !important;
   align-items: center !important;
   flex: 1 !important;
   justify-content: space-between !important;
-  margin: 0 0 0 1.25rem !important;
+  margin: 0 0 0 1rem !important;
   background: transparent !important;
   border: none !important;
   min-height: unset !important;
   padding: 0 !important;
+  float: none !important;
 }
 
-/* Sidebar Toggle Hamburger Button */
-.navbar-btn.sidebar-toggle {
+/* Sidebar Toggle Executive Drawer Button */
+.navbar-btn.sidebar-toggle,
+.sidebar-toggle,
+[data-toggle="offcanvas"] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   width: 42px !important;
   height: 42px !important;
+  min-width: 42px !important;
   border-radius: var(--radius-lg) !important;
   background: var(--color-surface-soft) !important;
-  border: 1px solid var(--color-hairline) !important;
+  border: 1.5px solid var(--color-hairline) !important;
   color: var(--color-ink) !important;
   cursor: pointer !important;
-  margin: 0 !important;
+  margin: 0 0.75rem !important;
   padding: 0 !important;
   transition: all 0.2s ease !important;
   text-decoration: none !important;
+  float: none !important;
+  position: static !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
 }
 
-.navbar-btn.sidebar-toggle:hover {
-  background: rgba(91, 45, 130, 0.12) !important;
-  border-color: var(--color-primary-soft) !important;
+.navbar-btn.sidebar-toggle:hover,
+.sidebar-toggle:hover,
+[data-toggle="offcanvas"]:hover {
+  background: rgba(147, 51, 234, 0.12) !important;
+  border-color: var(--color-primary) !important;
   color: var(--color-primary) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.2) !important;
 }
 
+/* Hide old unstyled icon-bar spans */
+.sidebar-toggle .icon-bar,
 .navbar-btn.sidebar-toggle .icon-bar {
-  display: block !important;
-  width: 18px !important;
-  height: 2px !important;
-  background-color: currentColor !important;
-  border-radius: 2px !important;
-  margin: 2px auto !important;
-  transition: all 0.25s ease !important;
+  display: none !important;
+}
+
+.sidebar-toggle-svg {
+  display: block;
+  color: inherit;
 }
 
 /* Top Actions (Right Side) */
@@ -545,7 +575,9 @@ aside.left-side.sidebar-offcanvas {
    5. Main Content Area & App Grid
    -------------------------------------------------------------------------- */
 aside.right-side {
-  flex: 1 !important;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
   background-color: transparent !important;
   padding: 1.75rem 2rem !important;
   box-sizing: border-box !important;
@@ -555,11 +587,12 @@ aside.right-side {
 }
 
 .right-side section.content {
-  max-width: 1450px;
+  max-width: 1450px !important;
   width: 100% !important;
-  margin: 0 auto;
+  margin: 0 auto !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+  overflow-x: hidden !important;
 }
 
 /* Welcome Dashboard Banner */
@@ -678,11 +711,9 @@ aside.right-side {
   box-sizing: border-box !important;
 }
 
-/* Remove Bootstrap ::before and ::after from creating ghost grid cells */
+/* Remove Bootstrap ::before and ::after from creating ghost grid cells ONLY on the apps grid */
 .row.dashboard-apps-grid::before,
-.row.dashboard-apps-grid::after,
-.right-side .content .row::before,
-.right-side .content .row::after {
+.row.dashboard-apps-grid::after {
   display: none !important;
   content: none !important;
 }
@@ -870,11 +901,6 @@ aside.right-side {
   transition: color 0.18s ease !important;
   word-break: break-word !important;
 }
-  text-transform: capitalize !important;
-  line-height: 1.35 !important;
-  letter-spacing: -0.15px !important;
-  transition: color 0.18s ease !important;
-}
 
 .clickapp:hover .stat-info {
   color: var(--color-primary) !important;
@@ -967,8 +993,75 @@ aside.right-side {
 }
 
 /* --------------------------------------------------------------------------
-   6. Inner Portal Pages Styling (Boxes, Tables, Forms, Alerts)
+   6. Inner Portal Pages Styling (Content Headers, Boxes, Tables, Forms, Alerts)
    -------------------------------------------------------------------------- */
+.content-header {
+  padding: 1.25rem 0 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  border-bottom: 1px solid var(--color-hairline-soft) !important;
+  margin-bottom: 1.75rem !important;
+}
+
+.content-header > h1 {
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  color: var(--color-ink-deep) !important;
+  margin: 0 !important;
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+.breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  font-size: 0.88rem !important;
+  color: var(--color-stone) !important;
+  float: none !important;
+  position: static !important;
+}
+
+.breadcrumb > li + li:before {
+  content: "/" !important;
+  padding: 0 0.35rem !important;
+  color: var(--color-hairline) !important;
+}
+
+.breadcrumb a {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.breadcrumb .active {
+  color: var(--color-steel) !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure inner rows keep normal Bootstrap flex/block flow with clearance */
+.right-side .content > .row:not(.dashboard-apps-grid) {
+  margin-left: -12px !important;
+  margin-right: -12px !important;
+  display: block !important;
+}
+
+.right-side .content > .row:not(.dashboard-apps-grid)::before,
+.right-side .content > .row:not(.dashboard-apps-grid)::after {
+  content: " " !important;
+  display: table !important;
+}
+
+.right-side .content > .row:not(.dashboard-apps-grid)::after {
+  clear: both !important;
+}
+
 /* Boxes / Cards for Profile, Forms, Tables */
 .box, .card, .panel {
   background: var(--color-surface-card) !important;

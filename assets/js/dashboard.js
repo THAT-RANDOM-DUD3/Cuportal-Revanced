@@ -527,9 +527,24 @@
   // 5. Sidebar Toggle & Offcanvas Behavior
   // -------------------------------------------------------------------------
   function setupSidebarInteractions() {
-    const toggleBtn = document.querySelector('[data-toggle="offcanvas"]');
+    const toggleBtn = document.querySelector('[data-toggle="offcanvas"]') ||
+                      document.querySelector('.sidebar-toggle') ||
+                      document.querySelector('.navbar-btn.sidebar-toggle');
     const wrapper = document.querySelector('.wrapper');
-    if (!toggleBtn || !wrapper) return;
+    if (!wrapper) return;
+
+    if (toggleBtn) {
+      // Modern Staggered Executive Sidebar Drawer Icon
+      toggleBtn.innerHTML = `
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-toggle-svg">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="19" y2="18"></line>
+        </svg>
+      `;
+      toggleBtn.setAttribute('title', 'Toggle Navigation Sidebar');
+      toggleBtn.setAttribute('aria-label', 'Toggle Navigation Sidebar');
+    }
 
     let backdrop = document.querySelector('.sidebar-backdrop');
     if (!backdrop) {
@@ -550,7 +565,9 @@
       }
     }
 
-    toggleBtn.addEventListener('click', toggleSidebar);
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleSidebar);
+    }
     backdrop.addEventListener('click', () => {
       wrapper.classList.remove('offcanvas-open');
       backdrop.classList.remove('active');
@@ -571,7 +588,7 @@
     if (!sidebar || sidebar.querySelector('.sidebar-user-card')) return;
 
     const userPanel = sidebar.querySelector('.user-panel');
-    const img = sidebar.querySelector('.staffimage');
+    const img = sidebar.querySelector('.staffimage') || sidebar.querySelector('.user-panel img');
     const listItems = sidebar.querySelectorAll('.sidebar-menu li');
 
     let fullName = '';
@@ -581,7 +598,7 @@
 
     listItems.forEach((li) => {
       const text = li.textContent.trim();
-      if (!fullName && text && !text.includes('Level') && !text.includes('Program') && !/\d{2}[A-Z]{2}/.test(text)) {
+      if (!fullName && text && !text.includes('Level') && !text.includes('Program') && !/\d{2}[A-Z]{2}/.test(text) && !text.includes('All Portals') && !text.includes('Change Password') && !text.includes('Sign Out')) {
         fullName = text;
       } else if (/\d{2}[A-Z]{2}\d+/.test(text)) {
         matricNo = text;
@@ -592,11 +609,50 @@
       }
     });
 
+    // Check user menu chip in navbar if name wasn't found in sidebar
+    if (!fullName) {
+      const topNameEl = document.querySelector('.user.user-menu .dropdown-toggle span') ||
+                        document.querySelector('.user-menu-name');
+      if (topNameEl) {
+        const topName = topNameEl.textContent.trim();
+        if (topName && topName !== 'Account' && topName !== 'Student') {
+          fullName = topName;
+        }
+      }
+    }
+
+    // Retrieve from or persist to sessionStorage so student details survive across inner portal pages
+    let cachedProfile = {};
+    try {
+      cachedProfile = JSON.parse(sessionStorage.getItem('cuportal_student_profile') || '{}');
+    } catch (e) {}
+
+    if (fullName && matricNo) {
+      // We are on a page with full data (e.g. dashboard) -> cache it
+      try {
+        sessionStorage.setItem('cuportal_student_profile', JSON.stringify({
+          fullName,
+          matricNo,
+          level,
+          program,
+          avatarSrc: img ? img.src : ''
+        }));
+      } catch (e) {}
+    } else {
+      // Use cached data on subpages if available
+      fullName = fullName || cachedProfile.fullName || 'Student';
+      matricNo = matricNo || cachedProfile.matricNo || '';
+      level = level || cachedProfile.level || '';
+      program = program || cachedProfile.program || '';
+    }
+
+    const avatarSrc = (img && img.src && !img.src.includes('logo.png')) ? img.src : (cachedProfile.avatarSrc || 'assets/img/logo.png');
+
     const profileCard = document.createElement('div');
     profileCard.className = 'sidebar-user-card';
     profileCard.innerHTML = `
-      <img src="${img ? img.src : 'assets/img/logo.png'}" class="staffimage" alt="Student Profile Photo" onerror="this.src='assets/img/logo.png'" />
-      <div class="sidebar-user-name">${escapeHtml(fullName || 'Student')}</div>
+      <img src="${avatarSrc}" class="staffimage" alt="Student Profile Photo" onerror="this.src='assets/img/logo.png'" />
+      <div class="sidebar-user-name">${escapeHtml(fullName)}</div>
       ${matricNo ? `<div class="sidebar-matric-badge"><i class="fa-solid fa-id-card"></i> ${escapeHtml(matricNo)}</div>` : ''}
       <div class="sidebar-meta-badges">
         ${level ? `<span class="sidebar-meta-pill"><i class="fa-solid fa-graduation-cap"></i> ${escapeHtml(level)}</span>` : ''}
@@ -607,26 +663,24 @@
     if (userPanel) userPanel.style.display = 'none';
     sidebar.prepend(profileCard);
 
-    // Only configure default navigation links if sidebar menu only contained raw metadata
+    // CRITICAL: ONLY replace sidebar-menu IF on apps dashboard AND it only contained raw metadata
+    // On inner subpages (like Student Account), PRESERVE the real navigation items!
     const menu = sidebar.querySelector('.sidebar-menu');
-    if (menu) {
+    if (menu && isAppsDashboardPage()) {
       const isMetadataOnly = Array.from(menu.querySelectorAll('a')).every((a) => {
         const href = a.getAttribute('href');
         return !href || href === '#' || href === '';
       });
 
       if (isMetadataOnly) {
-        const isDashboard = location.pathname.includes('studentdashboard');
-        const isPasswordPage = location.pathname.includes('resetpword');
-
         menu.innerHTML = `
-          <li class="${isDashboard ? 'active' : ''}">
+          <li class="active">
             <a href="studentdashboard.php">
               <i class="fa-solid fa-table-cells-large"></i>
               <span class="sidebar-item-text">All Portals</span>
             </a>
           </li>
-          <li class="${isPasswordPage ? 'active' : ''}">
+          <li>
             <a href="resetpword.php">
               <i class="fa-solid fa-key"></i>
               <span class="sidebar-item-text">Change Password</span>
