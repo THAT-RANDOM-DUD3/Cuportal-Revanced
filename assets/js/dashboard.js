@@ -33,31 +33,69 @@
     );
   }
 
-  // Map application names to modern high-clarity FontAwesome icons (for broken image fallbacks)
+  // Map application names to high-clarity standalone SVGs (immune to font loading / CDN failures)
   function getIconForApp(appName) {
     const name = (appName || '').toLowerCase();
     if (name.includes('account')) {
-      return '<i class="fa-solid fa-wallet" style="font-size: 2.2rem; color: #a855f7;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+        <line x1="2" y1="10" x2="22" y2="10"></line>
+        <circle cx="16" cy="15" r="1.5" fill="#a855f7"></circle>
+      </svg>`;
     }
     if (name.includes('planning') || name.includes('academic') || name.includes('setup')) {
-      return '<i class="fa-solid fa-graduation-cap" style="font-size: 2.2rem; color: #3b82f6;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+      </svg>`;
     }
     if (name.includes('resumption')) {
-      return '<i class="fa-solid fa-calendar-check" style="font-size: 2.2rem; color: #10b981;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+        <path d="m9 16 2 2 4-4"></path>
+      </svg>`;
     }
     if (name.includes('affair')) {
-      return '<i class="fa-solid fa-users" style="font-size: 2.2rem; color: #f59e0b;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>`;
     }
     if (name.includes('course') || name.includes('control') || name.includes('registration')) {
-      return '<i class="fa-solid fa-book-bookmark" style="font-size: 2.2rem; color: #ec4899;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        <path d="m9 9 2 2 4-4"></path>
+      </svg>`;
     }
     if (name.includes('attendance')) {
-      return '<i class="fa-solid fa-clipboard-user" style="font-size: 2.2rem; color: #06b6d4;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+        <path d="M7 7h10"></path>
+        <path d="M7 12h10"></path>
+        <path d="M7 17h6"></path>
+      </svg>`;
     }
     if (name.includes('result') || name.includes('processing')) {
-      return '<i class="fa-solid fa-chart-line" style="font-size: 2.2rem; color: #8b5cf6;"></i>';
+      return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+        <path d="M4 20h16"></path>
+        <polyline points="4 9 9 4 14 8 20 2"></polyline>
+      </svg>`;
     }
-    return '<i class="fa-solid fa-cubes" style="font-size: 2.2rem; color: #a855f7;"></i>';
+    return `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="7"></rect>
+      <rect x="14" y="3" width="7" height="7"></rect>
+      <rect x="14" y="14" width="7" height="7"></rect>
+      <rect x="3" y="14" width="7" height="7"></rect>
+    </svg>`;
   }
 
   // -------------------------------------------------------------------------
@@ -175,25 +213,46 @@
         card.appendChild(badge);
       }
 
-      // Handle broken or missing app icons
+      // Handle broken or missing app icons with reliable SVG fallbacks
       const img = card.querySelector('.stat-icon img');
       const titleEl = card.querySelector('.stat-info') || card.querySelector('h5');
       const appTitle = titleEl ? titleEl.textContent.trim() : '';
 
       if (img) {
-        img.addEventListener('error', () => {
+        const replaceWithIcon = () => {
           const iconWrapper = img.parentElement;
-          if (iconWrapper) {
+          if (iconWrapper && !iconWrapper.dataset.hasFallback) {
+            iconWrapper.dataset.hasFallback = 'true';
             iconWrapper.innerHTML = getIconForApp(appTitle);
           }
-        });
+        };
 
-        // If image already failed to load before listener
-        if (img.complete && img.naturalWidth === 0) {
-          const iconWrapper = img.parentElement;
-          if (iconWrapper) {
-            iconWrapper.innerHTML = getIconForApp(appTitle);
+        img.onerror = replaceWithIcon;
+        img.addEventListener('error', replaceWithIcon);
+
+        // Immediate check if broken or missing
+        if (img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)) {
+          replaceWithIcon();
+        }
+
+        // Secondary polling check for delayed image errors or pending state
+        setTimeout(() => {
+          if (!img.parentElement || img.parentElement.dataset.hasFallback) return;
+          if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+            replaceWithIcon();
           }
+        }, 400);
+
+        setTimeout(() => {
+          if (!img.parentElement || img.parentElement.dataset.hasFallback) return;
+          if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+            replaceWithIcon();
+          }
+        }, 1200);
+      } else {
+        const iconWrapper = card.querySelector('.stat-icon');
+        if (iconWrapper && !iconWrapper.querySelector('svg')) {
+          iconWrapper.innerHTML = getIconForApp(appTitle);
         }
       }
 
