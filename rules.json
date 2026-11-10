@@ -38,7 +38,62 @@
 			"type": "block"
 		},
 		"condition": {
-			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/js/jquery.js^",
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/js/jquery.min.js^",
+			"resourceTypes": [
+				"script"
+			]
+		}
+	},
+	{
+		"id": 4,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||ajax.googleapis.com/ajax/libs/jquery/*/jquery.min.js^",
+			"initiatorDomains": [
+				"cuportal.covenantuniversity.edu.ng"
+			],
+			"resourceTypes": [
+				"script"
+			]
+		}
+	},
+	{
+		"id": 5,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/js/jquery-ui-*.min.js^",
+			"resourceTypes": [
+				"script"
+			]
+		}
+	},
+	{
+		"id": 6,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/js/bootstrap.min.js^",
+			"resourceTypes": [
+				"script"
+			]
+		}
+	},
+	{
+		"id": 7,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/js/Director/app.js^",
 			"resourceTypes": [
 				"script"
 			]
@@ -115,7 +170,7 @@
 		"action": {
 			"type": "redirect",
 			"redirect": {
-				"url": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"
+				"url": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.8/css/bootstrap.min.css"
 			}
 		},
 		"condition": {
@@ -135,7 +190,7 @@
 			}
 		},
 		"condition": {
-			"urlFilter": "||cuportal.covenant.edu.ng/*assets/css/font-awesome.min.css^",
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/css/font-awesome.min.css^",
 			"resourceTypes": [
 				"stylesheet"
 			]
@@ -147,11 +202,37 @@
 		"action": {
 			"type": "redirect",
 			"redirect": {
-				"url": "https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+				"url": "https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.2.0/css/ionicons.min.css"
 			}
 		},
 		"condition": {
-			"urlFilter": "||cuportal.covenant.edu.ng/*assets/css/ionicons.min.css^",
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/css/ionicons.min.css^",
+			"resourceTypes": [
+				"stylesheet"
+			]
+		}
+	},
+	{
+		"id": 15,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/css/style.css^",
+			"resourceTypes": [
+				"stylesheet"
+			]
+		}
+	},
+	{
+		"id": 16,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||cuportal.covenantuniversity.edu.ng/*assets/css/mystyle.css^",
 			"resourceTypes": [
 				"stylesheet"
 			]

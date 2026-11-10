@@ -1,0 +1,345 @@
+/* ==========================================================================
+   CUPORTAL REVANCED GLOBAL DESIGN SYSTEM
+   Authentic Covenant University Visual Identity & Accessibility Standards
+   Shared Design Tokens, Themes, Base Typography & Reusable Components
+   ========================================================================== */
+
+:root {
+  /* ========================================================================
+     1. BRAND COLORS (Covenant University Identity)
+     ======================================================================== */
+  --cu-purple: #4a0e4e;             /* Authentic Bishop / Covenant Purple */
+  --cu-purple-deep: #320535;        /* Deep Shadow Purple */
+  --cu-purple-soft: #5b2d82;        /* Vibrant Royal Purple */
+  --cu-purple-amethyst: #7935b0;    /* High-clarity interactive purple */
+  --cu-gold: #d9951a;               /* Covenant Heritage Gold */
+  --cu-gold-bright: #facc15;        /* Radiant Accent Gold */
+
+  /* Semantic Core Tokens (Light Mode Defaults) */
+  --color-primary: #5b2d82;
+  --color-primary-hover: #4a0e4e;
+  --color-primary-soft: #7935b0;
+  --color-on-primary: #ffffff;
+  
+  --color-accent: #d9951a;
+  --color-accent-hover: #b87d15;
+
+  /* Surfaces & Canvas */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-card: rgba(255, 255, 255, 0.88);
+  --color-card-border: rgba(255, 255, 255, 0.75);
+  --color-scrim: rgba(15, 23, 42, 0.28);
+
+  /* Form & Interactive Controls */
+  --color-input-bg: #ffffff;
+  --color-input-border: #ced0d4;
+  --color-input-text: #1c1e21;
+  --color-input-placeholder: #8595a4;
+  
+  /* Text & Inks */
+  --color-ink-deep: #0a1317;
+  --color-ink: #1c1e21;
+  --color-charcoal: #444950;
+  --color-slate: #4b4c4f;
+  --color-steel: #5d6c7b;
+  --color-stone: #8595a4;
+  --color-disabled-text: #bcc0c4;
+  --color-help-text: #5d6c7b;
+
+  /* Buttons */
+  --color-btn-inactive-bg: #d1d5db;
+  --color-btn-inactive-text: #6b7280;
+  --color-btn-active-bg: #5b2d82;
+  --color-btn-active-hover: #4a0e4e;
+  --color-btn-active-text: #ffffff;
+  --color-btn-active-shadow: rgba(91, 45, 130, 0.35);
+
+  /* Links */
+  --color-link: #5b2d82;
+  --color-link-hover: #4a0e4e;
+
+  /* Floating Theme Switcher */
+  --color-toggle-bg: rgba(255, 255, 255, 0.88);
+  --color-toggle-border: rgba(255, 255, 255, 0.75);
+  --color-toggle-color: #4a0e4e;
+  --color-toggle-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* Hairlines & Separators */
+  --color-hairline: #ced0d4;
+  --color-hairline-soft: #dee3e9;
+
+  /* System Semantics */
+  --color-critical: #e41e3f;
+  --color-critical-strong: #f0284a;
+  --color-critical-bg: #fef2f2;
+  --color-critical-border: #fee2e2;
+  --color-success: #31a24c;
+  --color-success-bg: #f0fdf4;
+  --color-warning: #f59e0b;
+
+  /* ========================================================================
+     2. TYPOGRAPHY & SPACING
+     ======================================================================== */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --letter-spacing-body: -0.14px;
+  --letter-spacing-heading: -0.16px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+  --radius-full: 100px;
+
+  /* Elevation */
+  --shadow-card: 0 16px 36px -4px rgba(10, 19, 23, 0.16), 0 4px 12px -2px rgba(10, 19, 23, 0.08);
+  --shadow-card-subtle: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-input-focus: 0 0 0 3px rgba(91, 45, 130, 0.16);
+}
+
+/* ==========================================================================
+   3. DARK MODE TOKEN OVERRIDES (Explicit [data-theme="dark"] & System Fallback)
+      Ultra-deep obsidian backdrop with rich royal purple surfaces & accents
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --color-canvas: #06010b;
+  --color-surface-soft: #0d0317;
+  --color-surface-card: rgba(22, 7, 38, 0.92);
+  --color-card-border: rgba(168, 85, 247, 0.24);
+  --color-scrim: rgba(4, 1, 8, 0.85);
+
+  --color-primary: #a855f7;
+  --color-primary-hover: #c084fc;
+  --color-primary-soft: #9333ea;
+
+  --color-accent: #f59e0b;
+  --color-accent-hover: #fbbf24;
+
+  --color-input-bg: rgba(14, 4, 25, 0.9);
+  --color-input-border: rgba(168, 85, 247, 0.3);
+  --color-input-text: #ffffff;
+  --color-input-placeholder: #a78bfa;
+
+  --color-ink-deep: #ffffff;
+  --color-ink: #f5f3ff;
+  --color-charcoal: #e9d5ff;
+  --color-slate: #c4b5fd;
+  --color-steel: #a78bfa;
+  --color-stone: #8b5cf6;
+  --color-disabled-text: #4c1d95;
+  --color-help-text: #c4b5fd;
+
+  --color-btn-inactive-bg: #1e0b36;
+  --color-btn-inactive-text: #a78bfa;
+  --color-btn-active-bg: #9333ea;
+  --color-btn-active-hover: #a855f7;
+  --color-btn-active-text: #ffffff;
+  --color-btn-active-shadow: rgba(168, 85, 247, 0.5);
+
+  --color-link: #c084fc;
+  --color-link-hover: #e9d5ff;
+
+  --color-toggle-bg: rgba(22, 7, 38, 0.92);
+  --color-toggle-border: rgba(168, 85, 247, 0.35);
+  --color-toggle-color: #f5f3ff;
+  --color-toggle-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(147, 51, 234, 0.3);
+
+  --color-hairline: rgba(168, 85, 247, 0.22);
+  --color-hairline-soft: rgba(168, 85, 247, 0.12);
+
+  --color-critical-bg: rgba(239, 68, 68, 0.18);
+  --color-critical-border: rgba(239, 68, 68, 0.35);
+  --color-critical-strong: #f87171;
+
+  --shadow-card: 0 24px 50px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(147, 51, 234, 0.25);
+  --shadow-card-subtle: 0 6px 24px rgba(0, 0, 0, 0.65), 0 0 18px rgba(147, 51, 234, 0.15);
+  --shadow-input-focus: 0 0 0 3px rgba(168, 85, 247, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-canvas: #06010b;
+    --color-surface-soft: #0d0317;
+    --color-surface-card: rgba(22, 7, 38, 0.92);
+    --color-card-border: rgba(168, 85, 247, 0.24);
+    --color-scrim: rgba(4, 1, 8, 0.85);
+
+    --color-primary: #a855f7;
+    --color-primary-hover: #c084fc;
+    --color-primary-soft: #9333ea;
+
+    --color-accent: #f59e0b;
+    --color-accent-hover: #fbbf24;
+
+    --color-input-bg: rgba(14, 4, 25, 0.9);
+    --color-input-border: rgba(168, 85, 247, 0.3);
+    --color-input-text: #ffffff;
+    --color-input-placeholder: #a78bfa;
+
+    --color-ink-deep: #ffffff;
+    --color-ink: #f5f3ff;
+    --color-charcoal: #e9d5ff;
+    --color-slate: #c4b5fd;
+    --color-steel: #a78bfa;
+    --color-stone: #8b5cf6;
+    --color-disabled-text: #4c1d95;
+    --color-help-text: #c4b5fd;
+
+    --color-btn-inactive-bg: #1e0b36;
+    --color-btn-inactive-text: #a78bfa;
+    --color-btn-active-bg: #9333ea;
+    --color-btn-active-hover: #a855f7;
+    --color-btn-active-text: #ffffff;
+    --color-btn-active-shadow: rgba(168, 85, 247, 0.5);
+
+    --color-link: #c084fc;
+    --color-link-hover: #e9d5ff;
+
+    --color-toggle-bg: rgba(22, 7, 38, 0.92);
+    --color-toggle-border: rgba(168, 85, 247, 0.35);
+    --color-toggle-color: #f5f3ff;
+    --color-toggle-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(147, 51, 234, 0.3);
+
+    --color-hairline: rgba(168, 85, 247, 0.22);
+    --color-hairline-soft: rgba(168, 85, 247, 0.12);
+
+    --color-critical-bg: rgba(239, 68, 68, 0.18);
+    --color-critical-border: rgba(239, 68, 68, 0.35);
+    --color-critical-strong: #f87171;
+
+    --shadow-card: 0 24px 50px -10px rgba(0, 0, 0, 0.9), 0 0 35px rgba(147, 51, 234, 0.25);
+    --shadow-card-subtle: 0 6px 24px rgba(0, 0, 0, 0.65), 0 0 18px rgba(147, 51, 234, 0.15);
+    --shadow-input-focus: 0 0 0 3px rgba(168, 85, 247, 0.35);
+  }
+}
+
+    --color-btn-inactive-bg: #374151;
+    --color-btn-inactive-text: #9ca3af;
+    --color-btn-active-bg: #7935b0;
+    --color-btn-active-hover: #8c42cb;
+    --color-btn-active-text: #ffffff;
+    --color-btn-active-shadow: rgba(121, 53, 176, 0.45);
+
+    --color-link: #c084fc;
+    --color-link-hover: #d8b4fe;
+
+    --color-toggle-bg: rgba(26, 20, 38, 0.85);
+    --color-toggle-border: rgba(255, 255, 255, 0.15);
+    --color-toggle-color: #ffffff;
+    --color-toggle-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+
+    --color-hairline: rgba(255, 255, 255, 0.12);
+    --color-hairline-soft: rgba(255, 255, 255, 0.08);
+
+    --color-critical-bg: rgba(239, 68, 68, 0.15);
+    --color-critical-border: rgba(239, 68, 68, 0.3);
+    --color-critical-strong: #f87171;
+
+    --shadow-card: 0 20px 45px -8px rgba(0, 0, 0, 0.65), 0 0 30px rgba(121, 53, 176, 0.18);
+    --shadow-input-focus: 0 0 0 3px rgba(168, 85, 247, 0.28);
+  }
+}
+
+/* ==========================================================================
+   4. BASE FOUNDATIONS & RESET
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   5. REUSABLE SYSTEM COMPONENTS
+   ========================================================================== */
+
+/* Universal Floating Theme Toggle Pill */
+.theme-toggle-wrap {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  z-index: 100000;
+}
+
+.theme-toggle-btn {
+  background: #ffffff !important;
+  border: 2px solid #9333ea !important;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(147, 51, 234, 0.28), 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.2s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root[data-theme="dark"] .theme-toggle-btn {
+  background: #140424 !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4), 0 0 12px rgba(245, 158, 11, 0.2) !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 6px 18px rgba(147, 51, 234, 0.4);
+}
+
+:root[data-theme="dark"] .theme-toggle-btn:hover {
+  box-shadow: 0 6px 24px rgba(245, 158, 11, 0.55), 0 0 16px rgba(245, 158, 11, 0.35) !important;
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.theme-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Universal Alert Container */
+.portal-alert {
+  display: none;
+  background-color: var(--color-critical-bg);
+  border: 1px solid var(--color-critical-border);
+  color: var(--color-critical-strong);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.portal-alert.visible {
+  display: block;
+}
+
+/* Universal Transition Support */
+.portal-card-glass {
+  background: var(--color-surface-card);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}

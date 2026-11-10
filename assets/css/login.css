@@ -1,0 +1,268 @@
+/* ==========================================================================
+   CUPORTAL REVANCED: LOGIN MODULE
+   Page-specific styles for the Authentication & Portal Sign-In flow
+   Inherits design tokens & dark mode from global.css
+   ========================================================================== */
+
+@import url('global.css');
+
+/* ==========================================================================
+   1. VIEWPORT & BACKGROUND SCENE
+   ========================================================================== */
+body {
+  background-image: url("../img/CU6.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #1e2430;
+  position: relative;
+}
+
+/* Subtle Photo Scrim (Clear & crisp, enhances contrast and text readability) */
+.portal-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--color-scrim);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* Main Viewport Centered Container */
+.portal-container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ==========================================================================
+   2. LOGIN CARD COMPONENT (Refined Subtle Glassmorphism)
+   ========================================================================== */
+.portal-login-card {
+  width: 100%;
+  max-width: 410px;
+  background: var(--color-surface-card);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px 30px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Brand Logo Header */
+.card-logo-wrap {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.portal-cu-logo {
+  display: inline-block;
+  width: 110px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================================================
+   3. FORM CONTROLS & INPUTS
+   ========================================================================== */
+.form-horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Clean Input Style */
+.form-control,
+input[type="text"].form-control,
+input[type="password"].form-control {
+  width: 100%;
+  height: 46px;
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 14px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--color-input-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: var(--color-input-placeholder);
+  font-weight: 400;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-input-focus);
+}
+
+/* Password Toggle Visibility Icon */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-steel);
+  cursor: pointer;
+  padding: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.password-toggle:hover {
+  color: var(--color-ink-deep);
+}
+
+/* Helper Caption Text Below Inputs */
+.help-block {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-help-text);
+  letter-spacing: var(--letter-spacing-body);
+  text-align: center;
+  margin-top: 6px;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+/* ==========================================================================
+   4. PRIMARY SIGN IN BUTTON (Grey -> Purple & Clickable when typing)
+   ========================================================================== */
+.btn-signin,
+.btn.btn-danger,
+input[type="submit"]#signin {
+  width: 100% !important;
+  height: 46px !important;
+  background-color: var(--color-btn-inactive-bg) !important; /* Inactive State */
+  color: var(--color-btn-inactive-text) !important;
+  font-family: var(--font-family) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: var(--letter-spacing-body) !important;
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  cursor: not-allowed !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  margin-top: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease !important;
+}
+
+/* Active State: Triggered when user enters credentials */
+.btn-signin.btn-active,
+.btn-signin:not(:disabled),
+input[type="submit"]#signin.btn-active {
+  background-color: var(--color-btn-active-bg) !important;
+  color: var(--color-btn-active-text) !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px var(--color-btn-active-shadow) !important;
+}
+
+.btn-signin.btn-active:hover,
+.btn-signin:not(:disabled):hover,
+input[type="submit"]#signin.btn-active:hover {
+  background-color: var(--color-btn-active-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px var(--color-btn-active-shadow) !important;
+}
+
+.btn-signin.btn-active:active,
+.btn-signin:not(:disabled):active,
+input[type="submit"]#signin.btn-active:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   5. FORGOT PASSWORD & RECOVERY LINK
+   ========================================================================== */
+.forgot-password-wrap,
+.error {
+  margin-top: 14px;
+  text-align: left;
+}
+
+.forgot-password-link,
+.error a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.forgot-password-link:hover,
+.error a:hover {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE BREAKPOINTS (Mobile Touch Optimization)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .portal-container {
+    padding: 16px 12px;
+  }
+
+  .theme-toggle-wrap {
+    top: 14px;
+    right: 14px;
+  }
+
+  .theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .portal-login-card {
+    padding: 28px 20px 22px;
+    border-radius: var(--radius-lg);
+  }
+
+  .portal-cu-logo {
+    width: 95px;
+  }
+
+  .form-control {
+    height: 48px; /* Touch target minimum 44-48px per WCAG AAA */
+    font-size: 15px; /* Prevent iOS zoom */
+  }
+
+  .btn-signin {
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+}
